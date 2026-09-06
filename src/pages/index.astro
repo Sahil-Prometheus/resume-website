@@ -18,12 +18,9 @@ import Intro from '../components/Intro.astro';
   description="Strategic analytics and AI consulting leader with nine years of experience advising Fortune 50 and global enterprises."
 >
   <script is:inline>
-    /* Plays the landing intro unless the visitor prefers reduced
-       motion. Runs before first paint so the hero choreography
-       waits for the curtain. */
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.documentElement.classList.add('intro-playing');
-    }
+    /* Plays the landing intro on first paint so the hero waits
+       for the curtain. Click anywhere on the name wall to skip. */
+    document.documentElement.classList.add('intro-playing');
   </script>
   <Intro />
   <div class="landing">

@@ -7,7 +7,7 @@ import { stats } from '../content/resume';
     stats.map((stat, i) => (
       <div class="stat">
         <p class="stat-value">
-          <span data-count={stat.value} data-delay={1 + i * 0.12}>
+          <span data-count={stat.value} data-delay={i * 0.05}>
             {stat.value}
           </span>
           <span class="stat-suffix">{stat.suffix}</span>

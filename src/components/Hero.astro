@@ -293,9 +293,11 @@ const lastName = rest.join(' ');
     animation-delay: var(--d, 0s);
   }
 
-  /* While the intro curtain is up, the hero waits for its lift */
-  .intro-playing [data-hero] {
-    animation-delay: calc(var(--d, 0s) + 1.5s);
+  /* While the intro curtain is up, the hero holds still.
+     Removing .intro-playing unpauses it, so skip and finish
+     both start the choreography at the same moment. */
+  html.intro-playing [data-hero] {
+    animation-play-state: paused;
   }
 
   .js [data-hero='rise'] {
