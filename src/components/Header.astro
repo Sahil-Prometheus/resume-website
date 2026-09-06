@@ -85,32 +85,42 @@ const nav = [
     height: 15px;
   }
 
-  /* Phones: the icons live in the Contact section instead.
-     Nav stays on one line by tightening type and gaps. */
+  /* Phones: icons live in Contact. Name + theme on row 1,
+     nav links get the full second row so Contact is not covered. */
   @media (max-width: 40rem) {
     .header-social {
       display: none;
     }
 
     .header-inner {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.55rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      column-gap: 0.75rem;
+      row-gap: 0.55rem;
     }
 
     .wordmark {
+      grid-column: 1;
+      grid-row: 1;
+      justify-self: start;
       font-size: 1.05rem;
     }
 
     .header-right {
-      width: 100%;
-      justify-content: space-between;
-      gap: 0.6rem;
+      display: contents;
     }
 
     nav {
-      flex: 1;
+      grid-column: 1 / -1;
+      grid-row: 2;
       min-width: 0;
+    }
+
+    .theme-toggle {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
     }
 
     nav ul {
