@@ -2,15 +2,17 @@
    "Ma" (間) design system — washi paper, sumi ink, hanko red
    ============================================================ */
 
-:root {
+:root,
+[data-theme='light'] {
   color-scheme: light;
 
-  /* Color — washi paper */
+  /* Color — washi paper. Secondary ink is a step darker than
+     a typical grey so labels stay readable on cream. */
   --paper: #faf8f3;
   --ink: #1c1b19;
-  --ink-soft: #6f6a61;
-  --ink-faint: #a39d92;
-  --hairline: #e4dfd4;
+  --ink-soft: #534e47;
+  --ink-faint: #7a746b;
+  --hairline: #cfc8bb;
   --vermillion: #b54434;
   --vermillion-deep: #96382a;
 
@@ -77,6 +79,7 @@ html.theme-transition *::after {
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--paper);
 }
 
 /* Lenis smooth-scroll recommended styles */

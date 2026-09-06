@@ -7,9 +7,14 @@ const button = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
 const root = document.documentElement;
 
 const syncState = () => {
+  const theme = root.dataset.theme === 'dark' ? 'dark' : 'light';
   if (button) {
-    button.dataset.state = root.dataset.theme === 'dark' ? 'dark' : 'light';
+    button.dataset.state = theme;
   }
+  const themeColor = theme === 'dark' ? '#161513' : '#faf8f3';
+  document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]').forEach((meta) => {
+    meta.content = themeColor;
+  });
 };
 
 syncState();
