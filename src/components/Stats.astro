@@ -7,7 +7,7 @@ import { stats } from '../content/resume';
     stats.map((stat, i) => (
       <div class="stat">
         <p class="stat-value">
-          <span class="stat-figure" style={`--d: ${0.55 + i * 0.22}s`}>
+          <span class="stat-num" data-stat-focus>
             {stat.value}
             <span class="stat-suffix">{stat.suffix}</span>
           </span>
@@ -73,17 +73,18 @@ import { stats } from '../content/resume';
     overflow: visible;
   }
 
-  /* Soft mist clearing — the number is already there, it just
-     comes into focus. Long and unhurried, not a count-up. */
-  .stat-figure {
+  /* First paint is already misty, so the numbers never flash
+     sharp and then jump. JS eases them into focus. */
+  .stat-num {
     display: inline-block;
     padding: 0.2em 0.25em;
     margin: -0.2em -0.25em;
+    animation: none;
   }
 
-  :global(.js) .stat-figure {
-    animation: stat-focus 2.8s cubic-bezier(0.22, 1, 0.36, 1) both;
-    animation-delay: var(--d, 0.55s);
+  :global(.js) .stat-num {
+    filter: blur(22px);
+    opacity: 0.12;
   }
 
   .stat-suffix {
@@ -99,30 +100,5 @@ import { stats } from '../content/resume';
     text-transform: uppercase;
     color: var(--ink-soft);
     margin-top: 0.6rem;
-  }
-
-  @keyframes stat-focus {
-    from {
-      filter: blur(16px);
-      opacity: 0;
-    }
-
-    45% {
-      filter: blur(7px);
-      opacity: 0.55;
-    }
-
-    to {
-      filter: blur(0);
-      opacity: 1;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    :global(.js) .stat-figure {
-      animation: none;
-      filter: none;
-      opacity: 1;
-    }
   }
 </style>
