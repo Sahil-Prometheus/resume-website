@@ -1,0 +1,130 @@
+---
+import { experience } from '../content/resume';
+---
+
+<section class="section shell" id="experience" aria-label="Experience">
+  <p class="kicker" data-reveal>02 &mdash; Experience</p>
+  <div class="roles">
+    {
+      experience.map((role, i) => (
+        <article class="role" data-reveal style={`--reveal-delay: ${0.06 * i}s`}>
+          <header class="role-head">
+            <p class="role-company">{role.company}</p>
+            <h3 class="role-title">{role.title}</h3>
+            <p class="role-period">
+              {role.period} &nbsp;&middot;&nbsp; {role.location}
+            </p>
+          </header>
+
+          <p class:list={['role-metric', { accent: role.metric.accent }]}>
+            <span class="metric-value">{role.metric.value}</span>
+            <span class="metric-label">{role.metric.label}</span>
+          </p>
+
+          <ul class="role-highlights">
+            {role.highlights.map((h) => (
+              <li>{h}</li>
+            ))}
+          </ul>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .roles {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .role {
+    padding-block: clamp(2rem, 5vh, 3rem);
+  }
+
+  .role:first-child {
+    padding-top: 0;
+  }
+
+  .role + .role {
+    border-top: 1px solid var(--hairline);
+  }
+
+  .role-company {
+    font-family: var(--mono);
+    font-size: var(--text-label);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .role-title {
+    font-family: var(--serif);
+    font-optical-sizing: auto;
+    font-size: var(--text-title);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-top: 0.5rem;
+  }
+
+  .role-period {
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    color: var(--ink-faint);
+    margin-top: 0.5rem;
+  }
+
+  /* The one number worth remembering */
+  .role-metric {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .metric-value {
+    font-family: var(--serif);
+    font-optical-sizing: auto;
+    font-size: 1.9rem;
+    font-weight: 350;
+    line-height: 1;
+  }
+
+  .metric-label {
+    font-family: var(--mono);
+    font-size: var(--text-label);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .role-metric.accent .metric-value {
+    color: var(--vermillion);
+  }
+
+  .role-highlights {
+    list-style: none;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .role-highlights li {
+    position: relative;
+    padding-left: 1.75rem;
+    font-size: var(--text-small);
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
+  .role-highlights li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 1rem;
+    height: 1px;
+    background: var(--ink-faint);
+  }
+</style>

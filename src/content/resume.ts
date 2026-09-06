@@ -36,7 +36,8 @@ export interface Role {
   location: string;
   highlights: string[];
   // One number worth remembering from this role.
-  metric: { value: string; label: string };
+  // accent: true paints it vermillion — keep it to one role only.
+  metric: { value: string; label: string; accent?: boolean };
 }
 
 export const experience: Role[] = [
@@ -52,7 +53,7 @@ export const experience: Role[] = [
       'Led strategic data initiatives and BI automation, cutting insight delivery time by 60% and raising data adoption across global teams.',
       'Provided indirect oversight of 25+ analysts, scientists, designers, researchers, and offshore teams.',
     ],
-    metric: { value: '100%', label: 'project renewal rate' },
+    metric: { value: '100%', label: 'project renewal rate', accent: true },
   },
   {
     company: 'Kantar',

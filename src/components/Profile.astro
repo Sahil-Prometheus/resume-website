@@ -1,0 +1,39 @@
+---
+import { profile } from '../content/resume';
+---
+
+<section class="section shell" id="profile" aria-label="Profile">
+  <p class="kicker" data-reveal>01 &mdash; {profile.heading}</p>
+  <div class="profile-body">
+    {
+      profile.paragraphs.map((text, i) => (
+        <p class="profile-p" data-reveal style={`--reveal-delay: ${0.08 * (i + 1)}s`}>
+          {text}
+        </p>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .profile-p {
+    max-width: var(--measure);
+  }
+
+  .profile-p + .profile-p {
+    margin-top: 1.25em;
+  }
+
+  /* The opening paragraph speaks louder — an editorial lede */
+  .profile-p:first-child {
+    font-family: var(--serif);
+    font-optical-sizing: auto;
+    font-size: var(--text-lede);
+    font-weight: 350;
+    line-height: 1.5;
+  }
+
+  .profile-p:last-child {
+    color: var(--ink-soft);
+  }
+</style>
