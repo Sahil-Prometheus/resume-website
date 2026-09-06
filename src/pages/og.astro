@@ -1,0 +1,79 @@
+---
+/* This page exists only to be screenshotted at 1200x630 — it
+   becomes the social share image (public/og.png). It is marked
+   noindex so search engines ignore it. */
+import '@fontsource-variable/newsreader/opsz.css';
+import '@fontsource-variable/newsreader/opsz-italic.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import { person } from '../content/resume';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>og</title>
+    <style>
+      body {
+        width: 1200px;
+        height: 630px;
+        margin: 0;
+        overflow: hidden;
+        background: #faf8f3;
+        color: #1c1b19;
+        font-family: 'IBM Plex Mono', monospace;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 90px;
+        box-sizing: border-box;
+      }
+
+      .role {
+        font-size: 19px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #6f6a61;
+      }
+
+      h1 {
+        font-family: 'Newsreader Variable', Georgia, serif;
+        font-size: 108px;
+        font-weight: 300;
+        line-height: 1.02;
+        letter-spacing: -0.015em;
+        margin: 34px 0 0;
+      }
+
+      .tagline {
+        font-family: 'Newsreader Variable', Georgia, serif;
+        font-style: italic;
+        font-size: 34px;
+        font-weight: 340;
+        color: #6f6a61;
+        margin: 30px 0 0;
+      }
+
+      .seal {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        margin-top: 52px;
+        background: #b54434;
+        border-radius: 5px;
+        color: #faf8f3;
+        font-family: Georgia, serif;
+        font-size: 19px;
+        letter-spacing: 0.04em;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="role">{person.role}</p>
+    <h1>{person.name}</h1>
+    <p class="tagline">{person.tagline}</p>
+    <div class="seal">SG</div>
+  </body>
+</html>
