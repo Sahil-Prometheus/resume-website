@@ -85,10 +85,43 @@ const nav = [
     height: 15px;
   }
 
-  /* Phones: the icons live in the Contact section instead */
+  /* Phones: the icons live in the Contact section instead.
+     Nav stays on one line by tightening type and gaps. */
   @media (max-width: 40rem) {
     .header-social {
       display: none;
+    }
+
+    .header-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.55rem;
+    }
+
+    .wordmark {
+      font-size: 1.05rem;
+    }
+
+    .header-right {
+      width: 100%;
+      justify-content: space-between;
+      gap: 0.6rem;
+    }
+
+    nav {
+      flex: 1;
+      min-width: 0;
+    }
+
+    nav ul {
+      width: 100%;
+      justify-content: space-between;
+      gap: 0.45rem;
+    }
+
+    .nav-link {
+      font-size: 0.625rem;
+      letter-spacing: 0.08em;
     }
   }
 

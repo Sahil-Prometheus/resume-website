@@ -30,9 +30,10 @@
   --text-label: 0.75rem;
 
   /* Rhythm */
-  --container: 62rem;
+  --container: 90rem;
   --measure: 41rem;
-  --gutter: clamp(1.5rem, 5vw, 3rem);
+  --gutter: clamp(1.15rem, 3.2vw, 2.25rem);
+  --rail-reserve: 0rem;
   --section-gap: clamp(6.5rem, 16vh, 11rem);
 
   /* Motion */
@@ -148,12 +149,21 @@ a {
 
 /* ---------- Shared primitives ---------- */
 
-/* Reading column */
+/* Reading column. On wide screens a sliver is reserved on the
+   right for the section rail, so the page does not sit in a
+   narrow centred strip with an empty left field. */
 .shell {
   width: 100%;
   max-width: var(--container);
   margin-inline: auto;
-  padding-inline: var(--gutter);
+  padding-left: var(--gutter);
+  padding-right: calc(var(--gutter) + var(--rail-reserve));
+}
+
+@media (min-width: 75rem) {
+  :root {
+    --rail-reserve: 7.25rem;
+  }
 }
 
 /* The first screen: header + hero share exactly one viewport */
