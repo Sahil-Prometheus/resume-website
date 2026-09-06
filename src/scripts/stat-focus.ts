@@ -2,9 +2,9 @@
    so the motion still plays when the OS “Reduce motion” setting
    turns off CSS animations. Soft blur only — no sliding. */
 
-const DURATION_MS = 4200;
-const STAGGER_MS = 380;
-const START_DELAY_MS = 400;
+const DURATION_MS = 3360;
+const STAGGER_MS = 304;
+const START_DELAY_MS = 320;
 const START_BLUR = 22;
 const START_OPACITY = 0.12;
 
