@@ -1,12 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
 ---
 
-<Base title="Sahil Gohel" description="Strategic analytics and AI consulting leader.">
-  <main class="shell">
-    <p class="kicker">Design system check</p>
-    <h1 style="font-family: var(--serif); font-size: var(--text-display); font-weight: 300; line-height: 1.05;">
-      Sahil Gohel
-    </h1>
+<Base
+  title="Sahil Gohel — Principal Consultant, AI & Analytics"
+  description="Strategic analytics and AI consulting leader with nine years of experience advising Fortune 50 and global enterprises."
+>
+  <Header />
+  <main>
+    <Hero />
   </main>
 </Base>

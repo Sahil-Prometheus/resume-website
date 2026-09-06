@@ -1,0 +1,75 @@
+---
+import { person } from '../content/resume';
+
+const nav = [
+  { label: 'Profile', href: '#profile' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<header class="header">
+  <div class="shell header-inner">
+    <a href="#top" class="wordmark">{person.name}</a>
+    <nav aria-label="Page sections">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a class="nav-link u-link" href={item.href}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    padding-top: clamp(1.75rem, 5vh, 3rem);
+  }
+
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5rem;
+  }
+
+  .wordmark {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  nav ul {
+    display: flex;
+    gap: clamp(1rem, 3vw, 2.25rem);
+    list-style: none;
+  }
+
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    transition: color 0.35s var(--ease-out);
+  }
+
+  .nav-link:hover {
+    color: var(--ink);
+  }
+
+  @media (max-width: 30rem) {
+    nav li:nth-child(2) {
+      display: none;
+    }
+  }
+</style>
