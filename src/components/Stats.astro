@@ -1,0 +1,64 @@
+---
+import { stats } from '../content/resume';
+---
+
+<div class="stats" data-hero="fade" style="--d: 0.9s" aria-label="Key numbers">
+  {
+    stats.map((stat, i) => (
+      <div class="stat">
+        <p class="stat-value">
+          <span data-count={stat.value} data-delay={1 + i * 0.12}>
+            {stat.value}
+          </span>
+          <span class="stat-suffix">{stat.suffix}</span>
+        </p>
+        <p class="stat-label">{stat.label}</p>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem 2rem;
+    margin-top: clamp(2rem, 5vh, 3.25rem);
+  }
+
+  @media (min-width: 40rem) {
+    .stats {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  .stat {
+    border-top: 1px solid var(--hairline);
+    padding-top: 1rem;
+  }
+
+  .stat-value {
+    font-family: var(--serif);
+    font-optical-sizing: auto;
+    font-size: clamp(1.9rem, 3.2vw, 2.5rem);
+    font-weight: 300;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-suffix {
+    font-size: 0.6em;
+    margin-left: 0.05em;
+    color: var(--ink-soft);
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 0.6rem;
+  }
+</style>

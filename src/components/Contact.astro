@@ -24,15 +24,17 @@ const resumeUrl = new URL('/Sahil-Gohel-Resume.pdf', Astro.site).href;
     </p>
     <div class="contact-actions" data-reveal style="--reveal-delay: 0.32s">
       <ResumeButton />
-      <QrCode url={resumeUrl} caption="Scan for résumé" />
     </div>
   </div>
 </section>
 
 <footer class="footer">
   <div class="shell footer-inner">
-    <p>&copy; {year} {person.name}</p>
-    <p class="footer-right">{person.location}</p>
+    <div class="footer-text">
+      <p>&copy; {year} {person.name}</p>
+      <p>{person.location}</p>
+    </div>
+    <QrCode url={resumeUrl} caption="Scan for résumé" size={80} />
   </div>
 </footer>
 
@@ -93,8 +95,15 @@ const resumeUrl = new URL('/Sahil-Gohel-Resume.pdf', Astro.site).href;
   .footer-inner {
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
-    padding-block: 1.75rem;
+    align-items: flex-end;
+    gap: 2rem;
+    padding-block: 2rem;
+  }
+
+  .footer-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
     font-family: var(--mono);
     font-size: 0.75rem;
     color: var(--ink-faint);
