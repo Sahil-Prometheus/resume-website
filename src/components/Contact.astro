@@ -1,7 +1,10 @@
 ---
 import { person, contact } from '../content/resume';
+import ResumeButton from './ResumeButton.astro';
+import QrCode from './QrCode.astro';
 
 const year = new Date().getFullYear();
+const resumeUrl = new URL('/Sahil-Gohel-Resume.pdf', Astro.site).href;
 ---
 
 <section class="section shell" id="contact" aria-label="Contact">
@@ -19,6 +22,10 @@ const year = new Date().getFullYear();
       <span class="dot" aria-hidden="true">&middot;</span>
       {person.phone}
     </p>
+    <div class="contact-actions" data-reveal style="--reveal-delay: 0.32s">
+      <ResumeButton />
+      <QrCode url={resumeUrl} caption="Scan for résumé" />
+    </div>
   </div>
 </section>
 
@@ -68,6 +75,14 @@ const year = new Date().getFullYear();
 
   .dot {
     color: var(--ink-faint);
+  }
+
+  .contact-actions {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 3rem;
   }
 
   .footer {
