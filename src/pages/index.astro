@@ -8,15 +8,18 @@ import Projects from '../components/Projects.astro';
 import Expertise from '../components/Expertise.astro';
 import Education from '../components/Education.astro';
 import Contact from '../components/Contact.astro';
+import ScrollProgress from '../components/ScrollProgress.astro';
 ---
 
 <Base
   title="Sahil Gohel — Principal Consultant, AI & Analytics"
   description="Strategic analytics and AI consulting leader with nine years of experience advising Fortune 50 and global enterprises."
 >
-  <Header />
-  <main>
+  <div class="landing">
+    <Header />
     <Hero />
+  </div>
+  <main>
     <Profile />
     <Experience />
     <Projects />
@@ -24,4 +27,5 @@ import Contact from '../components/Contact.astro';
     <Education />
     <Contact />
   </main>
+  <ScrollProgress />
 </Base>

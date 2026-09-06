@@ -3,7 +3,7 @@ import { education } from '../content/resume';
 ---
 
 <section class="section shell" id="education" aria-label="Education">
-  <p class="kicker" data-reveal>05 &mdash; Education</p>
+  <p class="kicker" data-reveal><span class="kicker-num">05</span> &mdash; Education</p>
   <div class="edu">
     <div class="edu-block" data-reveal>
       <h3 class="edu-label">Degrees</h3>
@@ -32,20 +32,26 @@ import { education } from '../content/resume';
           </div>
         ))
       }
-
-      <h3 class="edu-label languages-label">Languages</h3>
-      <p class="edu-meta languages-line">
-        {
-          education.languages.map((l, i) => (
-            <>
-              <span class={l.level === 'Native' ? 'lang-native' : 'lang-other'}>{l.name}</span>
-              <span class="lang-level"> {l.level}</span>
-              {i < education.languages.length - 1 && <span class="lang-sep"> &middot; </span>}
-            </>
-          ))
-        }
-      </p>
     </div>
+  </div>
+
+  <div class="languages" data-reveal>
+    <h3 class="edu-label languages-heading">Languages</h3>
+    <p class="languages-line">
+      {
+        education.languages.map((l, i) => (
+          <>
+            <span class="lang-name">{l.name}</span>
+            <span class="lang-level">{l.level}</span>
+            {i < education.languages.length - 1 && (
+              <span class="lang-sep" aria-hidden="true">
+                &middot;
+              </span>
+            )}
+          </>
+        ))
+      }
+    </p>
   </div>
 </section>
 
@@ -99,15 +105,26 @@ import { education } from '../content/resume';
     margin-top: 0.25rem;
   }
 
-  .languages-label {
-    margin-top: 2.25rem;
+  /* Languages — one centred row spanning the full section */
+  .languages {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .languages-heading {
+    display: inline-block;
+    border-top: none;
+    padding-top: 0;
   }
 
   .languages-line {
-    margin-top: 1.25rem;
+    margin-top: 0.9rem;
+    font-size: var(--text-small);
+    white-space: nowrap;
   }
 
-  .lang-native {
+  .lang-name {
     color: var(--ink);
   }
 
@@ -115,9 +132,18 @@ import { education } from '../content/resume';
     font-family: var(--mono);
     font-size: 0.75rem;
     color: var(--ink-faint);
+    margin-left: 0.3rem;
   }
 
   .lang-sep {
     color: var(--ink-faint);
+    margin-inline: 0.9rem;
+  }
+
+  /* On small screens, names only — keeps the single row intact */
+  @media (max-width: 40rem) {
+    .lang-level {
+      display: none;
+    }
   }
 </style>

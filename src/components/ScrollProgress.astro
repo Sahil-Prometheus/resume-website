@@ -1,0 +1,43 @@
+---
+/* A quiet reading companion: a fixed hairline track on the right
+   edge with a vermillion fill that travels as you scroll. */
+---
+
+<div class="scroll-progress" aria-hidden="true">
+  <span class="scroll-progress-track">
+    <span class="scroll-progress-fill" data-scroll-fill></span>
+  </span>
+</div>
+
+<style>
+  .scroll-progress {
+    display: none;
+  }
+
+  @media (min-width: 56rem) {
+    .scroll-progress {
+      display: block;
+      position: fixed;
+      right: calc(var(--gutter) * 0.5);
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 50;
+    }
+  }
+
+  .scroll-progress-track {
+    display: block;
+    position: relative;
+    width: 1px;
+    height: 32vh;
+    background: var(--hairline);
+  }
+
+  .scroll-progress-fill {
+    position: absolute;
+    inset: 0;
+    background: var(--vermillion);
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+</style>

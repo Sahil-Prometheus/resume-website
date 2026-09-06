@@ -153,6 +153,13 @@ a {
   padding-inline: var(--gutter);
 }
 
+/* The first screen: header + hero share exactly one viewport */
+.landing {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
 /* Editorial section: mono label in the left margin on desktop */
 .section {
   display: grid;
@@ -176,6 +183,10 @@ a {
   text-transform: uppercase;
   color: var(--ink-soft);
   padding-top: 0.45em; /* optically align with serif first line */
+}
+
+.kicker-num {
+  color: var(--vermillion);
 }
 
 .kicker::after {
