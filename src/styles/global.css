@@ -3,7 +3,9 @@
    ============================================================ */
 
 :root {
-  /* Color */
+  color-scheme: light;
+
+  /* Color — washi paper */
   --paper: #faf8f3;
   --ink: #1c1b19;
   --ink-soft: #6f6a61;
@@ -34,6 +36,31 @@
   /* Motion */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --duration: 0.9s;
+}
+
+/* Sumi night — the dark theme. Warm ink blacks, cream text,
+   vermillion lifted slightly so it still glows. */
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --paper: #161513;
+  --ink: #e9e5db;
+  --ink-soft: #9d978c;
+  --ink-faint: #6b665c;
+  --hairline: #2b2823;
+  --vermillion: #c65a48;
+  --vermillion-deep: #b54434;
+}
+
+/* Gentle cross-fade while the theme flips (added briefly by JS) */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition:
+    background-color 0.45s ease,
+    color 0.45s ease,
+    border-color 0.45s ease !important;
 }
 
 /* ---------- Reset ---------- */
@@ -90,9 +117,13 @@ body::after {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+html[data-theme='dark'] body::after {
+  opacity: 0.05;
+}
+
 ::selection {
   background: var(--vermillion);
-  color: var(--paper);
+  color: #faf8f3;
 }
 
 :focus-visible {

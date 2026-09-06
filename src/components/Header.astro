@@ -12,19 +12,24 @@ const nav = [
 <header class="header">
   <div class="shell header-inner">
     <a href="#top" class="wordmark">{person.name}</a>
-    <nav aria-label="Page sections">
-      <ul>
-        {
-          nav.map((item) => (
-            <li>
-              <a class="nav-link u-link" href={item.href}>
-                {item.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+    <div class="header-right">
+      <nav aria-label="Page sections">
+        <ul>
+          {
+            nav.map((item) => (
+              <li>
+                <a class="nav-link u-link" href={item.href}>
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <button class="theme-toggle" data-theme-toggle type="button" aria-label="Toggle colour theme">
+        <span data-theme-label>Dark</span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -48,13 +53,20 @@ const nav = [
     white-space: nowrap;
   }
 
+  .header-right {
+    display: flex;
+    align-items: baseline;
+    gap: clamp(1.25rem, 3vw, 2.25rem);
+  }
+
   nav ul {
     display: flex;
     gap: clamp(1rem, 3vw, 2.25rem);
     list-style: none;
   }
 
-  .nav-link {
+  .nav-link,
+  .theme-toggle {
     font-family: var(--mono);
     font-size: 0.6875rem;
     letter-spacing: 0.14em;
@@ -63,7 +75,26 @@ const nav = [
     transition: color 0.35s var(--ease-out);
   }
 
-  .nav-link:hover {
+  .nav-link:hover,
+  .theme-toggle:hover {
     color: var(--ink);
+  }
+
+  .theme-toggle {
+    background: none;
+    border: none;
+    padding: 0 0 2px;
+    cursor: pointer;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition:
+      color 0.35s var(--ease-out),
+      background-size 0.55s var(--ease-out);
+  }
+
+  .theme-toggle:hover {
+    background-size: 100% 1px;
   }
 </style>

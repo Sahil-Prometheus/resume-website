@@ -1,0 +1,43 @@
+---
+interface Props {
+  href?: string;
+}
+
+const { href = '/Sahil-Gohel-Resume.pdf' } = Astro.props;
+---
+
+<a class="resume-button" href={href} download>
+  <span class="resume-label">Download résumé</span>
+  <span class="resume-filetype" aria-hidden="true">PDF &darr;</span>
+</a>
+
+<style>
+  .resume-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1.35rem;
+    border: 1px solid var(--ink);
+    font-family: var(--mono);
+    font-size: var(--text-label);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition:
+      background-color 0.35s var(--ease-out),
+      color 0.35s var(--ease-out);
+  }
+
+  .resume-filetype {
+    color: var(--ink-soft);
+    transition: color 0.35s var(--ease-out);
+  }
+
+  .resume-button:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .resume-button:hover .resume-filetype {
+    color: var(--paper);
+  }
+</style>
