@@ -41,8 +41,8 @@ const jsonLd = {
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical.href} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#faf8f3" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#161513" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#faf8f3" />
 
     <!-- Social share card -->
     <meta property="og:type" content="website" />
@@ -60,12 +60,14 @@ const jsonLd = {
 
     <script is:inline>
       (() => {
-        const stored = localStorage.getItem('theme');
-        const theme =
-          stored ??
-          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        const stored = localStorage.getItem('color-theme');
+        const theme = stored === 'dark' || stored === 'light' ? stored : 'light';
         document.documentElement.dataset.theme = theme;
         document.documentElement.classList.add('js');
+        const scheme = document.querySelector('meta[name="color-scheme"]');
+        const themeColor = document.querySelector('meta[name="theme-color"]');
+        if (scheme) scheme.setAttribute('content', theme);
+        if (themeColor) themeColor.setAttribute('content', theme === 'dark' ? '#161513' : '#faf8f3');
       })();
     </script>
   </head>

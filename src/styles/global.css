@@ -4,7 +4,7 @@
 
 :root,
 [data-theme='light'] {
-  color-scheme: light;
+  color-scheme: only light;
 
   /* Color — washi paper. Secondary ink is a step darker than
      a typical grey so labels stay readable on cream. */

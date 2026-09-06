@@ -147,8 +147,9 @@ const nav = [
     text-align: center;
   }
 
-  /* Dark mode: the sun sets, the moon rises into view */
-  .theme-toggle[data-state='dark'] .toggle-track {
+  /* Follow the page theme from first paint, not a later JS sync.
+     Dark mode: the sun sets, the moon rises into view. */
+  :global(html[data-theme='dark']) .theme-toggle .toggle-track {
     transform: translateY(-1.15em);
   }
 
