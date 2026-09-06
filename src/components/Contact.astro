@@ -37,12 +37,12 @@ const year = new Date().getFullYear();
 
 <style>
   .contact-heading {
-    font-family: var(--serif);
-    font-optical-sizing: auto;
-    font-size: var(--text-display);
-    font-weight: 300;
-    line-height: 1.05;
-    letter-spacing: -0.015em;
+    font-family: var(--font);
+    font-stretch: var(--wdth-display);
+    font-size: var(--text-section);
+    font-weight: 650;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
   }
 
   .contact-note {
@@ -56,18 +56,19 @@ const year = new Date().getFullYear();
   }
 
   .contact-email a {
-    font-family: var(--serif);
-    font-optical-sizing: auto;
-    font-size: clamp(1.35rem, 2.5vw + 0.5rem, 1.9rem);
-    font-weight: 350;
+    font-family: var(--font);
+    font-stretch: var(--wdth-display);
+    font-size: var(--text-contact);
+    font-weight: 600;
   }
 
   .contact-alt {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
-    font-family: var(--mono);
-    font-size: 0.8125rem;
+    font-family: var(--font);
+    font-stretch: var(--wdth-ui);
+    font-size: var(--text-meta);
     color: var(--ink-soft);
     margin-top: 1.5rem;
   }
@@ -95,8 +96,9 @@ const year = new Date().getFullYear();
     justify-content: space-between;
     gap: 1rem;
     padding-block: 1.75rem;
-    font-family: var(--mono);
-    font-size: 0.75rem;
+    font-family: var(--font);
+    font-stretch: var(--wdth-ui);
+    font-size: var(--text-tag);
     color: var(--ink-faint);
   }
 </style>

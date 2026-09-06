@@ -26,7 +26,7 @@ import { stats } from '../content/resume';
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem 2rem;
     max-width: 52rem;
-    margin-top: clamp(1.25rem, 3vh, 2rem);
+    margin-top: clamp(0.65rem, 2.4svh, 2rem);
   }
 
   @media (min-width: 40rem) {
@@ -48,13 +48,7 @@ import { stats } from '../content/resume';
       padding-top: 0.6rem;
     }
 
-    .stat-value {
-      font-size: 1.45rem;
-    }
-
     .stat-label {
-      font-size: 0.5625rem;
-      letter-spacing: 0.08em;
       margin-top: 0.4rem;
     }
   }
@@ -65,10 +59,10 @@ import { stats } from '../content/resume';
   }
 
   .stat-value {
-    font-family: var(--serif);
-    font-optical-sizing: auto;
-    font-size: clamp(1.7rem, 2.8vw, 2.2rem);
-    font-weight: 300;
+    font-family: var(--font);
+    font-stretch: var(--wdth-display);
+    font-size: var(--text-stat);
+    font-weight: 600;
     line-height: 1;
     font-variant-numeric: tabular-nums;
     overflow: visible;
@@ -95,9 +89,11 @@ import { stats } from '../content/resume';
   }
 
   .stat-label {
-    font-family: var(--mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.1em;
+    font-family: var(--font);
+    font-stretch: var(--wdth-ui);
+    font-size: var(--text-tag);
+    font-weight: 500;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--ink-soft);
     margin-top: 0.6rem;

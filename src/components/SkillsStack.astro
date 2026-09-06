@@ -65,18 +65,19 @@ import { skillsStack } from '../content/resume';
   }
 
   .skills-intro h2 {
-    font-family: var(--sans);
-    font-size: clamp(1.65rem, 3vw, 1.875rem);
+    font-family: var(--font);
+    font-stretch: var(--wdth-display);
+    font-size: var(--text-brand);
     font-weight: 650;
     line-height: 1.16;
-    letter-spacing: -0.035em;
+    letter-spacing: -0.03em;
   }
 
   .skills-intro p {
     max-width: 31rem;
     margin-top: 0.85rem;
     color: var(--ink-soft);
-    font-size: var(--text-small);
+    font-size: var(--text-lead);
     line-height: 1.55;
   }
 
@@ -86,8 +87,9 @@ import { skillsStack } from '../content/resume';
 
   .skills-block > h3,
   .stack-block > h3 {
-    font-family: var(--sans);
-    font-size: var(--text-small);
+    font-family: var(--font);
+    font-stretch: var(--wdth-ui);
+    font-size: var(--text-body);
     font-weight: 650;
     line-height: 1.2;
     letter-spacing: -0.01em;
@@ -128,8 +130,9 @@ import { skillsStack } from '../content/resume';
   }
 
   .phase h4 {
-    font-family: var(--sans);
-    font-size: 1.0625rem;
+    font-family: var(--font);
+    font-stretch: var(--wdth-ui);
+    font-size: var(--text-phase);
     font-weight: 650;
     line-height: 1.2;
     letter-spacing: -0.02em;
@@ -139,7 +142,7 @@ import { skillsStack } from '../content/resume';
     max-width: 15rem;
     margin-top: 0.3rem;
     color: var(--ink-soft);
-    font-size: 0.8125rem;
+    font-size: var(--text-meta);
     line-height: 1.45;
   }
 
@@ -158,7 +161,7 @@ import { skillsStack } from '../content/resume';
     padding: 0.34rem 0.4rem;
     background: color-mix(in srgb, var(--ink) 4%, var(--paper));
     color: var(--ink);
-    font-size: 0.625rem;
+    font-size: var(--text-meta);
     line-height: 1.15;
     white-space: nowrap;
     transition:
@@ -186,14 +189,15 @@ import { skillsStack } from '../content/resume';
 
   .stack-group dt {
     color: var(--ink-faint);
-    font-size: 0.625rem;
+    font-stretch: var(--wdth-ui);
+    font-size: var(--text-tag);
     line-height: 1.3;
   }
 
   .stack-group dd {
     margin-top: 0.55rem;
     color: var(--ink-soft);
-    font-size: 0.75rem;
+    font-size: var(--text-small);
     line-height: 1.55;
   }
 

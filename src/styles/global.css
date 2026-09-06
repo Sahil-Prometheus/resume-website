@@ -16,25 +16,38 @@
   --vermillion: #b54434;
   --vermillion-deep: #96382a;
 
-  /* Type */
-  --serif: 'Newsreader Variable', Georgia, 'Times New Roman', serif;
-  --sans: 'Instrument Sans Variable', system-ui, -apple-system, sans-serif;
-  --mono: 'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
+  /* Type — one family. Contrast comes from width, not a second face.
+     The hero name is the only exception (Newsreader, locked size). */
+  --font: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-hero: 'Newsreader Variable', Georgia, 'Times New Roman', serif;
 
-  /* Fluid type scale */
-  --text-display: clamp(2.9rem, 6.5vw + 1rem, 5.25rem);
-  --text-title: clamp(1.6rem, 2.2vw + 0.8rem, 2.1rem);
-  --text-lede: clamp(1.15rem, 1vw + 0.9rem, 1.35rem);
+  --wdth-mast: 78%;
+  --wdth-statement: 80%;
+  --wdth-display: 85%;
+  --wdth-ui: 92%;
+  --wdth-body: 100%;
+
+  /* Fluid scale: min → max across the viewport. Drama lives above 1.25rem. */
+  --text-statement: min(clamp(2rem, 4.8vw + 0.7rem, 6.5rem), 9.6svh);
+  --text-section: clamp(1.45rem, 0.7vw + 1.28rem, 1.95rem);
+  --text-contact: clamp(1.5rem, 1.15vw + 1.22rem, 2.4rem);
+  --text-brand: clamp(1.35rem, 0.9vw + 1.14rem, 2.05rem);
+  --text-stat: min(clamp(1.35rem, 1.15vw + 1.08rem, 2.25rem), 3.2svh);
+  --text-phase: 1.25rem;
+  --text-case: clamp(1.075rem, 0.3vw + 1.01rem, 1.3rem);
+  --text-lead: clamp(1.05rem, 0.18vw + 1.01rem, 1.1875rem);
   --text-body: 1.0625rem;
+  --text-list: 1rem;
   --text-small: 0.9375rem;
-  --text-label: 0.75rem;
+  --text-meta: 0.8125rem;
+  --text-tag: 0.75rem;
 
-  /* Rhythm */
+  /* Rhythm — start-screen spacing is height-aware so it fits one view */
   --container: 90rem;
   --measure: 41rem;
   --gutter: clamp(1.15rem, 3.2vw, 2.25rem);
   --rail-reserve: 0rem;
-  --section-gap: clamp(6.5rem, 16vh, 11rem);
+  --section-gap: clamp(6.5rem, 16svh, 11rem);
 
   /* Motion */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -98,7 +111,8 @@ html.lenis body {
 }
 
 body {
-  font-family: var(--sans);
+  font-family: var(--font);
+  font-stretch: var(--wdth-body);
   font-size: var(--text-body);
   font-weight: 400;
   line-height: 1.75;
@@ -166,11 +180,19 @@ a {
   }
 }
 
-/* The first screen: header + hero share exactly one viewport */
+/* The first screen: header + hero share exactly one viewport.
+   Below 520px tall (landscape phones) we stop forcing a full screen
+   so nothing gets squashed. */
 .landing {
   min-height: 100svh;
   display: flex;
   flex-direction: column;
+}
+
+@media (max-height: 520px) {
+  .landing {
+    min-height: 0;
+  }
 }
 
 /* Editorial section: mono label in the left margin on desktop */
@@ -189,13 +211,14 @@ a {
 }
 
 .kicker {
-  font-family: var(--mono);
-  font-size: var(--text-label);
-  font-weight: 400;
-  letter-spacing: 0.14em;
+  font-family: var(--font);
+  font-stretch: var(--wdth-ui);
+  font-size: var(--text-tag);
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-soft);
-  padding-top: 0.45em; /* optically align with serif first line */
+  padding-top: 0.35em;
 }
 
 .kicker-num {
@@ -263,5 +286,15 @@ a {
 
   .u-link {
     transition: none;
+  }
+}
+
+@media print {
+  body {
+    font-size: 10.5pt;
+  }
+
+  .hero-name {
+    font-size: 20pt;
   }
 }

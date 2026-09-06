@@ -3,8 +3,6 @@
    becomes the social share image (public/og.png). It is marked
    noindex so search engines ignore it. */
 import '@fontsource-variable/newsreader/opsz.css';
-import '@fontsource-variable/newsreader/opsz-italic.css';
-import '@fontsource/ibm-plex-mono/400.css';
 import { person } from '../content/resume';
 ---
 
@@ -14,6 +12,12 @@ import { person } from '../content/resume';
     <meta charset="utf-8" />
     <meta name="robots" content="noindex" />
     <title>og</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,300..700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       body {
         width: 1200px;
@@ -22,7 +26,8 @@ import { person } from '../content/resume';
         overflow: hidden;
         background: #faf8f3;
         color: #1c1b19;
-        font-family: 'IBM Plex Mono', monospace;
+        font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+        font-stretch: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -31,8 +36,10 @@ import { person } from '../content/resume';
       }
 
       .role {
+        font-stretch: 92%;
         font-size: 19px;
-        letter-spacing: 0.16em;
+        font-weight: 500;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         color: #6f6a61;
       }
@@ -47,10 +54,9 @@ import { person } from '../content/resume';
       }
 
       .tagline {
-        font-family: 'Newsreader Variable', Georgia, serif;
-        font-style: italic;
-        font-size: 34px;
-        font-weight: 340;
+        font-stretch: 85%;
+        font-size: 28px;
+        font-weight: 500;
         color: #6f6a61;
         margin: 30px 0 0;
       }
@@ -64,8 +70,10 @@ import { person } from '../content/resume';
         background: #b54434;
         border-radius: 5px;
         color: #faf8f3;
-        font-family: Georgia, serif;
-        font-size: 19px;
+        font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+        font-stretch: 78%;
+        font-size: 16px;
+        font-weight: 650;
         letter-spacing: 0.04em;
       }
     </style>
