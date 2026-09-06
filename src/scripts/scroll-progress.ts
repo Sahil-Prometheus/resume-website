@@ -1,18 +1,13 @@
-/* Drives the fixed page counter and section index. The current
-   "page" is the last numbered section whose top has passed the
-   middle of the screen; its number turns terracotta and so does
-   its name in the index. Position-driven (not time-driven), so it
-   stays in step with Lenis' inertial scroll and costs nothing
-   when idle. */
+/* Drives the fixed section rail. The active tick is the last
+   section whose top has passed the middle of the viewport. Only
+   that section's name is revealed beside the rail. */
 
-const currentEl = document.querySelector<HTMLElement>('[data-pi-current]');
-const totalEl = document.querySelector<HTMLElement>('[data-pi-total]');
-const sections = Array.from(document.querySelectorAll<HTMLElement>('main section[id]'));
 const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-pi-link]'));
+const sections = links
+  .map((link) => document.getElementById(link.dataset.piLink ?? ''))
+  .filter((section): section is HTMLElement => section instanceof HTMLElement);
 
-if (currentEl && totalEl && sections.length > 0) {
-  totalEl.textContent = String(sections.length).padStart(2, '0');
-
+if (links.length > 0 && sections.length > 0) {
   let scheduled = false;
   let lastIndex = -1;
 
@@ -25,13 +20,12 @@ if (currentEl && totalEl && sections.length > 0) {
     });
     if (index !== lastIndex) {
       lastIndex = index;
-      currentEl.textContent = String(index + 1).padStart(2, '0');
       const activeId = sections[index].id;
       links.forEach((link) => {
         const isActive = link.dataset.piLink === activeId;
         link.classList.toggle('active', isActive);
         if (isActive) {
-          link.setAttribute('aria-current', 'true');
+          link.setAttribute('aria-current', 'location');
         } else {
           link.removeAttribute('aria-current');
         }
@@ -49,6 +43,7 @@ if (currentEl && totalEl && sections.length > 0) {
     },
     { passive: true },
   );
+  window.addEventListener('resize', update, { passive: true });
 
   update();
 }

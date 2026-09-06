@@ -18,8 +18,8 @@ export const person = {
     url: 'https://www.linkedin.com/in/gohelsahil',
   },
   github: {
-    label: 'github.com/sahilgohel91',
-    url: 'https://github.com/sahilgohel91',
+    label: 'github.com/Sahil-Prometheus',
+    url: 'https://github.com/Sahil-Prometheus',
   },
   // The one-sentence promise under your name.
   tagline: 'I help enterprises turn AI and analytics into outcomes people trust.',
@@ -168,46 +168,74 @@ export const expertise: SkillGroup[] = [
   },
 ];
 
-// The six cards in the Skills & Stack section. Each card has a
-// small label, a big title, and one sentence about how you use it.
-export interface SkillCard {
-  label: string;
+// The Skills & Stack section follows the way an AI engagement
+// moves from deciding what to build, through delivery, to adoption.
+export interface EngagementPhase {
   title: string;
   description: string;
+  capabilities: string[];
 }
 
-export const skillsStack: SkillCard[] = [
-  {
-    label: 'Languages',
-    title: 'Python, SQL, & More',
-    description: 'Python, SQL, and JavaScript form the backbone of my data and automation work.',
-  },
-  {
-    label: 'Data & BI',
-    title: 'Power BI, Tableau, & More',
-    description: 'Power BI, Tableau, and Excel for clear, decision-ready reporting.',
-  },
-  {
-    label: 'Cloud & Data',
-    title: 'AWS, Snowflake, & More',
-    description: 'AWS, Snowflake, and BigQuery for scalable data pipelines and storage.',
-  },
-  {
-    label: 'AI & LLM',
-    title: 'Claude, Copilot, & More',
-    description: 'Claude, Copilot, and modern LLM tooling for AI-assisted workflows.',
-  },
-  {
-    label: 'Analytics & DS',
-    title: 'Regression & Forecasting',
-    description: 'Regression, forecasting, and NLP applied to real business problems.',
-  },
-  {
-    label: 'Web & Automation',
-    title: 'n8n & VBA',
-    description: 'n8n, VBA, and scripting to remove repetitive manual work.',
-  },
-];
+export interface StackGroup {
+  label: string;
+  technologies: string;
+}
+
+export const skillsStack = {
+  heading: 'What I do, in the order an engagement needs it',
+  introduction:
+    'Most AI work dies between phases — a good idea nobody can build, or a working build nobody adopts. I cover all three.',
+  phases: [
+    {
+      title: 'Frame',
+      description: 'Working out what is worth building, and what it is worth.',
+      capabilities: [
+        'AI opportunity assessment',
+        'Analytics & measurement strategy',
+        'Business cases and pricing',
+        'Proposals and sales enablement',
+        'Scoping and resourcing',
+      ],
+    },
+    {
+      title: 'Build',
+      description: 'Getting a working thing in front of real users.',
+      capabilities: [
+        'Data harmonisation and governance',
+        'LLM orchestration and retrieval',
+        'Evaluation and model testing',
+        'Prototyping and delivery',
+        'Security and access review',
+      ],
+    },
+    {
+      title: 'Land',
+      description: 'Making sure it is still used six months later.',
+      capabilities: [
+        'Solution embedding and adoption',
+        'Senior stakeholder management',
+        'Cross-functional team leadership',
+        'Insights and storytelling',
+        'Dashboards and BI automation',
+      ],
+    },
+  ] satisfies EngagementPhase[],
+  stack: [
+    {
+      label: 'Data and AI',
+      technologies:
+        'Python, SQL, Postgres, Claude API, retrieval and evaluation design, local models (Llama, Gemma, Qwen)',
+    },
+    {
+      label: 'Build',
+      technologies: 'React, TypeScript, Supabase, Vercel, GitHub CI/CD, Cursor, Figma',
+    },
+    {
+      label: 'Enterprise',
+      technologies: 'Power BI, Tableau, Azure, Microsoft 365',
+    },
+  ] satisfies StackGroup[],
+};
 
 export const education = {
   degrees: [

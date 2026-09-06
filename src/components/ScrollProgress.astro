@@ -1,31 +1,32 @@
 ---
-/* A quiet reading companion fixed to the right edge: the page
-   counter ("03 / 07") above an index of section names, all in
-   horizontal type, right-aligned. The section in view glows
-   terracotta; clicking a name glides there via Lenis. Only
-   appears on wide screens where the right margin has room. */
+/* A quiet reading companion fixed to the right edge. The rail
+   keeps one tick per section, but reveals only the name of the
+   section currently in view. */
 
 const index = [
   { id: 'profile', name: 'Profile' },
   { id: 'experience', name: 'Experience' },
-  { id: 'projects', name: 'Projects' },
+  { id: 'projects', name: 'Selected projects' },
   { id: 'expertise', name: 'Expertise' },
-  { id: 'skills', name: 'Skills' },
+  { id: 'skills', name: 'Skills & stack' },
   { id: 'education', name: 'Education' },
   { id: 'contact', name: 'Contact' },
 ];
 ---
 
-<aside class="page-indicator" aria-label="Section index">
-  <span class="pi-counter" aria-hidden="true">
-    <span class="pi-current" data-pi-current>01</span>
-    <span class="pi-rest">&nbsp;/&nbsp;<span data-pi-total>07</span></span>
-  </span>
-  <nav class="pi-index">
+<aside class="page-indicator">
+  <nav class="pi-rail" aria-label="Page sections">
     {
-      index.map((item) => (
-        <a class="pi-link" href={`#${item.id}`} data-pi-link={item.id}>
-          {item.name}
+      index.map((item, itemIndex) => (
+        <a
+          class="pi-link"
+          href={`#${item.id}`}
+          data-pi-link={item.id}
+          style={`--pi-position: ${(itemIndex / (index.length - 1)) * 100}%`}
+          aria-label={`Go to ${item.name}`}
+        >
+          <span class="pi-tick" aria-hidden="true" />
+          <span class="pi-name">{item.name}</span>
         </a>
       ))
     }
@@ -41,49 +42,80 @@ const index = [
     .page-indicator {
       display: block;
       position: fixed;
-      right: calc(var(--gutter) * 0.5);
       top: 50%;
-      transform: translateY(-50%);
+      right: 14rem;
       z-index: 50;
-      font-family: var(--mono);
-      font-size: 0.6875rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      text-align: right;
-      user-select: none;
+      transform: translateY(-50%);
+    }
+
+    .pi-rail {
+      position: relative;
+      width: 1px;
+      height: clamp(18rem, 58vh, 27rem);
+      border-left: 1px solid var(--hairline);
+    }
+
+    .pi-link {
+      position: absolute;
+      top: var(--pi-position);
+      left: -1px;
+      width: 4rem;
+      height: 2rem;
+      color: var(--ink-faint);
+      transform: translateY(-50%);
     }
   }
 
-  .pi-counter {
+  .pi-link {
     display: block;
   }
 
-  .pi-current {
+  .pi-tick {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: block;
+    width: 1.4rem;
+    height: 1px;
+    background: var(--ink-faint);
+    transform: translateY(-50%);
+    transition:
+      width 0.45s var(--ease-out),
+      background-color 0.35s var(--ease-out);
+  }
+
+  .pi-name {
+    position: absolute;
+    top: 50%;
+    left: 5.25rem;
+    width: max-content;
     color: var(--vermillion);
-    transition: color 0.3s var(--ease-out);
+    font-family: var(--sans);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-0.4rem, -50%);
+    transition:
+      opacity 0.35s var(--ease-out),
+      transform 0.45s var(--ease-out);
+    user-select: none;
   }
 
-  .pi-rest {
-    color: var(--ink-faint);
+  .pi-link:hover .pi-tick {
+    width: 2rem;
+    background: var(--ink-soft);
   }
 
-  .pi-index {
-    margin-top: 1.1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
+  .pi-link.active .pi-tick {
+    width: 4rem;
+    background: var(--vermillion);
   }
 
-  .pi-link {
-    color: var(--ink-faint);
-    transition: color 0.35s var(--ease-out);
-  }
-
-  .pi-link:hover {
-    color: var(--ink);
-  }
-
-  .pi-link.active {
-    color: var(--vermillion);
+  .pi-link.active .pi-name {
+    opacity: 1;
+    transform: translate(0, -50%);
   }
 </style>
