@@ -33,8 +33,8 @@ export const profile = {
   ],
 };
 
-// The four numbers shown on the landing screen. They count up
-// when the page loads. Suffix appears after the number (%, +).
+// The four numbers shown on the landing screen. They ease
+// into focus when the page loads. Suffix appears after the number (%, +).
 export const stats = [
   { value: 9, suffix: '', label: 'Years of experience' },
   { value: 100, suffix: '%', label: 'Project renewal rate' },

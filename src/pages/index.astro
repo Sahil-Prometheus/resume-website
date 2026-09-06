@@ -10,19 +10,12 @@ import SkillsStack from '../components/SkillsStack.astro';
 import Education from '../components/Education.astro';
 import Contact from '../components/Contact.astro';
 import ScrollProgress from '../components/ScrollProgress.astro';
-import Intro from '../components/Intro.astro';
 ---
 
 <Base
   title="Sahil Gohel — Principal Consultant, AI & Analytics"
   description="Strategic analytics and AI consulting leader with nine years of experience advising Fortune 50 and global enterprises."
 >
-  <script is:inline>
-    /* Plays the landing intro on first paint so the hero waits
-       for the curtain. Click anywhere on the name wall to skip. */
-    document.documentElement.classList.add('intro-playing');
-  </script>
-  <Intro />
   <div class="landing">
     <Header />
     <Hero />

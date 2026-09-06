@@ -2,17 +2,19 @@
 import { stats } from '../content/resume';
 ---
 
-<div class="stats" data-hero="fade" style="--d: 0.9s" aria-label="Key numbers">
+<div class="stats" aria-label="Key numbers">
   {
     stats.map((stat, i) => (
       <div class="stat">
         <p class="stat-value">
-          <span data-count={stat.value} data-delay={i * 0.05}>
+          <span class="stat-figure" style={`--d: ${0.55 + i * 0.22}s`}>
             {stat.value}
+            <span class="stat-suffix">{stat.suffix}</span>
           </span>
-          <span class="stat-suffix">{stat.suffix}</span>
         </p>
-        <p class="stat-label">{stat.label}</p>
+        <p class="stat-label" data-hero="fade" style={`--d: ${0.9 + i * 0.22}s`}>
+          {stat.label}
+        </p>
       </div>
     ))
   }
@@ -68,6 +70,20 @@ import { stats } from '../content/resume';
     font-weight: 300;
     line-height: 1;
     font-variant-numeric: tabular-nums;
+    overflow: visible;
+  }
+
+  /* Soft mist clearing — the number is already there, it just
+     comes into focus. Long and unhurried, not a count-up. */
+  .stat-figure {
+    display: inline-block;
+    padding: 0.2em 0.25em;
+    margin: -0.2em -0.25em;
+  }
+
+  :global(.js) .stat-figure {
+    animation: stat-focus 2.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--d, 0.55s);
   }
 
   .stat-suffix {
@@ -83,5 +99,30 @@ import { stats } from '../content/resume';
     text-transform: uppercase;
     color: var(--ink-soft);
     margin-top: 0.6rem;
+  }
+
+  @keyframes stat-focus {
+    from {
+      filter: blur(16px);
+      opacity: 0;
+    }
+
+    45% {
+      filter: blur(7px);
+      opacity: 0.55;
+    }
+
+    to {
+      filter: blur(0);
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.js) .stat-figure {
+      animation: none;
+      filter: none;
+      opacity: 1;
+    }
   }
 </style>
