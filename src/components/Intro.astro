@@ -1,0 +1,116 @@
+---
+import { person } from '../content/resume';
+
+/* Landing intro: the name fills the screen in four giant rows —
+   alternating solid ink and hairline outline — then the whole
+   panel lifts like a curtain to reveal the hero. Only ever shown
+   when <html> has .intro-playing (set inline before first paint,
+   skipped for reduced-motion visitors). Click anywhere to skip. */
+---
+
+<div class="intro" data-intro aria-hidden="true">
+  <div class="intro-rows">
+    <span class="intro-row">{person.name}</span>
+    <span class="intro-row">{person.name}</span>
+    <span class="intro-row">{person.name}</span>
+    <span class="intro-row">{person.name}</span>
+  </div>
+</div>
+
+<style>
+  .intro {
+    display: none;
+  }
+
+  .intro-playing .intro {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: var(--paper);
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  .intro-playing .intro.intro-exit {
+    transform: translateY(-100%);
+  }
+
+  .intro-rows {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4vw;
+  }
+
+  .intro-row {
+    font-family: var(--serif);
+    font-optical-sizing: auto;
+    font-size: clamp(3rem, 11vw, 9rem);
+    font-weight: 300;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    color: var(--ink);
+    animation: intro-row-in 0.9s var(--ease-out) both;
+  }
+
+  /* Alternating rows: hairline outline, sliding in from the right */
+  .intro-row:nth-child(odd) {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--ink-faint);
+    animation-name: intro-row-in-r;
+  }
+
+  .intro-row:nth-child(2) {
+    animation-delay: 0.08s;
+  }
+
+  .intro-row:nth-child(3) {
+    animation-delay: 0.16s;
+  }
+
+  .intro-row:nth-child(4) {
+    animation-delay: 0.24s;
+  }
+
+  @keyframes intro-row-in {
+    from {
+      transform: translateX(-104%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes intro-row-in-r {
+    from {
+      transform: translateX(104%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+</style>
+
+<script>
+  const intro = document.querySelector('[data-intro]');
+  const playing = document.documentElement.classList.contains('intro-playing');
+
+  if (intro && playing) {
+    let exited = false;
+    const exit = () => {
+      if (exited) return;
+      exited = true;
+      intro.classList.add('intro-exit');
+      window.setTimeout(() => intro.remove(), 900);
+    };
+    window.setTimeout(exit, 1450);
+    intro.addEventListener('click', exit);
+  } else if (intro) {
+    intro.remove();
+  }
+</script>

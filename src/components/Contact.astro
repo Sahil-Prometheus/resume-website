@@ -1,6 +1,7 @@
 ---
 import { person, contact } from '../content/resume';
 import ResumeButton from './ResumeButton.astro';
+import SocialIcons from './SocialIcons.astro';
 
 const year = new Date().getFullYear();
 ---
@@ -20,6 +21,9 @@ const year = new Date().getFullYear();
       <span class="dot" aria-hidden="true">&middot;</span>
       {person.phone}
     </p>
+    <div class="contact-social" data-reveal style="--reveal-delay: 0.28s">
+      <SocialIcons />
+    </div>
     <div class="contact-actions" data-reveal style="--reveal-delay: 0.32s">
       <ResumeButton />
     </div>
@@ -72,6 +76,10 @@ const year = new Date().getFullYear();
 
   .dot {
     color: var(--ink-faint);
+  }
+
+  .contact-social {
+    margin-top: 1.5rem;
   }
 
   .contact-actions {

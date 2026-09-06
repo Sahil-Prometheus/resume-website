@@ -293,6 +293,11 @@ const lastName = rest.join(' ');
     animation-delay: var(--d, 0s);
   }
 
+  /* While the intro curtain is up, the hero waits for its lift */
+  .intro-playing [data-hero] {
+    animation-delay: calc(var(--d, 0s) + 1.5s);
+  }
+
   .js [data-hero='rise'] {
     animation-name: hero-rise;
     animation-duration: 1.15s;

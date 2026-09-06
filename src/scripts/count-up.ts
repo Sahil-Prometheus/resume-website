@@ -5,12 +5,15 @@
 const counters = document.querySelectorAll<HTMLElement>('[data-count]');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// If the landing intro is playing, the numbers wait for the curtain.
+const introOffset = document.documentElement.classList.contains('intro-playing') ? 1500 : 0;
+
 if (!prefersReducedMotion) {
   counters.forEach((el) => {
     const target = Number(el.dataset.count ?? '0');
     const delay = Number(el.dataset.delay ?? '0') * 1000;
     const duration = 1600;
-    const start = performance.now() + delay;
+    const start = performance.now() + delay + introOffset;
 
     el.textContent = '0';
 

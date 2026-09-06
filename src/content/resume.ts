@@ -17,6 +17,10 @@ export const person = {
     label: 'linkedin.com/in/gohelsahil',
     url: 'https://www.linkedin.com/in/gohelsahil',
   },
+  github: {
+    label: 'github.com/sahilgohel91',
+    url: 'https://github.com/sahilgohel91',
+  },
   // The one-sentence promise under your name.
   tagline: 'I help enterprises turn AI and analytics into outcomes people trust.',
 };

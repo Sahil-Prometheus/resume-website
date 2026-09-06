@@ -23,7 +23,7 @@ const jsonLd = {
   jobTitle: person.role,
   email: `mailto:${person.email}`,
   url: canonical.href,
-  sameAs: [person.linkedin.url],
+  sameAs: [person.linkedin.url, person.github.url],
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'London',

@@ -1,38 +1,46 @@
 ---
 import { education } from '../content/resume';
+
+/* Degrees and certificates share grid rows, so a tall entry in one
+   column can never push the other column out of alignment. */
+const rows = Array.from(
+  { length: Math.max(education.degrees.length, education.certificates.length) },
+  (_, i) => ({ degree: education.degrees[i], certificate: education.certificates[i] }),
+);
 ---
 
 <section class="section shell" id="education" aria-label="Education">
   <p class="kicker" data-reveal><span class="kicker-num">06</span> &mdash; Education</p>
-  <div class="edu">
-    <div class="edu-block" data-reveal>
-      <h3 class="edu-label">Degrees</h3>
-      {
-        education.degrees.map((d) => (
-          <div class="edu-item">
-            <p class="edu-title">{d.title}</p>
-            <p class="edu-meta">
-              {d.school}, {d.place}
-            </p>
-            <p class="edu-period">{d.period}</p>
+  <div class="edu" data-reveal>
+    <h3 class="edu-label edu-label-deg">Degrees</h3>
+    <h3 class="edu-label edu-label-cert">Certificates</h3>
+    {
+      rows.map((row) => (
+        <>
+          <div class="edu-item edu-cell-deg">
+            {row.degree && (
+              <>
+                <p class="edu-title">{row.degree.title}</p>
+                <p class="edu-meta">
+                  {row.degree.school}, {row.degree.place}
+                </p>
+                <p class="edu-period">{row.degree.period}</p>
+              </>
+            )}
           </div>
-        ))
-      }
-    </div>
-
-    <div class="edu-block" data-reveal style="--reveal-delay: 0.08s">
-      <h3 class="edu-label">Certificates</h3>
-      {
-        education.certificates.map((c) => (
-          <div class="edu-item">
-            <p class="edu-title">{c.title}</p>
-            <p class="edu-meta">
-              {c.school} &nbsp;&middot;&nbsp; {c.year}
-            </p>
+          <div class="edu-item edu-cell-cert">
+            {row.certificate && (
+              <>
+                <p class="edu-title">{row.certificate.title}</p>
+                <p class="edu-meta">
+                  {row.certificate.school} &nbsp;&middot;&nbsp; {row.certificate.year}
+                </p>
+              </>
+            )}
           </div>
-        ))
-      }
-    </div>
+        </>
+      ))
+    }
   </div>
 
   <div class="languages" data-reveal>
@@ -58,15 +66,9 @@ import { education } from '../content/resume';
 <style>
   .edu {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.75rem;
-  }
-
-  @media (min-width: 40rem) {
-    .edu {
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+    row-gap: 1.5rem;
   }
 
   .edu-label {
@@ -80,8 +82,28 @@ import { education } from '../content/resume';
     padding-top: 1.25rem;
   }
 
-  .edu-item {
-    margin-top: 1.25rem;
+  /* Phones: stack as two grouped blocks instead of interleaved rows */
+  @media (max-width: 40rem) {
+    .edu {
+      grid-template-columns: 1fr;
+    }
+
+    .edu-label-deg {
+      order: 0;
+    }
+
+    .edu-cell-deg {
+      order: 1;
+    }
+
+    .edu-label-cert {
+      order: 2;
+      margin-top: 1.5rem;
+    }
+
+    .edu-cell-cert {
+      order: 3;
+    }
   }
 
   .edu-title {

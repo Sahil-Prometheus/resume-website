@@ -1,24 +1,24 @@
-/* Theme toggle — flips between washi (light) and sumi (dark),
-   remembers the choice, and labels the button with the mode
-   you'll switch TO. */
+/* Theme toggle — flips between washi (light) and sumi (dark) and
+   remembers the choice. The button shows the CURRENT sky: 日 sun
+   in light mode, 月 moon in dark mode; on click one sets and the
+   other rises. */
 
 const button = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
-const label = button?.querySelector<HTMLSpanElement>('[data-theme-label]');
 const root = document.documentElement;
 
-const syncLabel = () => {
-  if (label) {
-    label.textContent = root.dataset.theme === 'dark' ? 'Light' : 'Dark';
+const syncState = () => {
+  if (button) {
+    button.dataset.state = root.dataset.theme === 'dark' ? 'dark' : 'light';
   }
 };
 
-syncLabel();
+syncState();
 
 button?.addEventListener('click', () => {
   const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
   root.classList.add('theme-transition');
   root.dataset.theme = next;
   localStorage.setItem('theme', next);
-  syncLabel();
+  syncState();
   window.setTimeout(() => root.classList.remove('theme-transition'), 500);
 });
