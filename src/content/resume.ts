@@ -164,6 +164,53 @@ export const expertise: SkillGroup[] = [
   },
 ];
 
+// The six cards in the Skills & Stack section. Each card has a
+// small label, a big title, and one sentence about how you use it.
+export interface SkillCard {
+  label: string;
+  title: string;
+  description: string;
+}
+
+export const skillsStack: SkillCard[] = [
+  {
+    label: 'Languages',
+    title: 'SQL, Python, & More',
+    description:
+      'The daily foundation — production-grade SQL and Python for analysis, pipelines, and prototyping.',
+  },
+  {
+    label: 'BI & Viz',
+    title: 'Power BI & Tableau',
+    description:
+      'Executive dashboards and self-serve analytics designed for adoption, not decoration.',
+  },
+  {
+    label: 'AI & LLM',
+    title: 'Claude, Copilot, & More',
+    description:
+      'Conversational analytics and LLM workflows embedded into real business processes.',
+  },
+  {
+    label: 'Cloud & Data',
+    title: 'AWS, Snowflake, & More',
+    description:
+      'Modern data stacks — warehousing, pipelines, and modelling that keep insights reliable.',
+  },
+  {
+    label: 'Analytics & DS',
+    title: 'Regression & Forecasting',
+    description:
+      'Marketing mix models, demand forecasting, and NLP translated into commercial decisions.',
+  },
+  {
+    label: 'Web & Automation',
+    title: 'n8n & VBA',
+    description:
+      'Automation that removes the grunt work — from spreadsheet macros to orchestrated workflows.',
+  },
+];
+
 export const education = {
   degrees: [
     {

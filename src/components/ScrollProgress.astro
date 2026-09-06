@@ -1,43 +1,41 @@
 ---
-/* A quiet reading companion: a fixed hairline track on the right
-   edge with a vermillion fill that travels as you scroll. */
+/* A quiet reading companion: a fixed page counter on the right
+   edge, set vertically — "03 / 07" — showing which numbered
+   section is in view. Updates in step with Lenis' scroll. */
 ---
 
-<div class="scroll-progress" aria-hidden="true">
-  <span class="scroll-progress-track">
-    <span class="scroll-progress-fill" data-scroll-fill></span>
-  </span>
+<div class="page-indicator" aria-hidden="true">
+  <span class="pi-current" data-pi-current>01</span>
+  <span class="pi-rest">&nbsp;/&nbsp;<span data-pi-total>07</span></span>
 </div>
 
 <style>
-  .scroll-progress {
+  .page-indicator {
     display: none;
   }
 
   @media (min-width: 56rem) {
-    .scroll-progress {
+    .page-indicator {
       display: block;
       position: fixed;
       right: calc(var(--gutter) * 0.5);
       top: 50%;
       transform: translateY(-50%);
       z-index: 50;
+      writing-mode: vertical-rl;
+      font-family: var(--mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.14em;
+      user-select: none;
     }
   }
 
-  .scroll-progress-track {
-    display: block;
-    position: relative;
-    width: 1px;
-    height: 32vh;
-    background: var(--hairline);
+  .pi-current {
+    color: var(--ink);
+    transition: color 0.3s var(--ease-out);
   }
 
-  .scroll-progress-fill {
-    position: absolute;
-    inset: 0;
-    background: var(--vermillion);
-    transform: scaleY(0);
-    transform-origin: top;
+  .pi-rest {
+    color: var(--ink-faint);
   }
 </style>
