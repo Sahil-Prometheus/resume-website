@@ -1,8 +1,9 @@
 ---
 /* A quiet reading companion fixed to the right edge: the page
-   counter ("03 / 07") above a vertical index of section names.
-   The section in view glows terracotta; clicking a name glides
-   there via Lenis. Hidden on narrow or short screens. */
+   counter ("03 / 07") above an index of section names, all in
+   horizontal type, right-aligned. The section in view glows
+   terracotta; clicking a name glides there via Lenis. Only
+   appears on wide screens where the right margin has room. */
 
 const index = [
   { id: 'profile', name: 'Profile' },
@@ -36,7 +37,7 @@ const index = [
     display: none;
   }
 
-  @media (min-width: 56rem) {
+  @media (min-width: 75rem) {
     .page-indicator {
       display: block;
       position: fixed;
@@ -44,13 +45,17 @@ const index = [
       top: 50%;
       transform: translateY(-50%);
       z-index: 50;
-      writing-mode: vertical-rl;
       font-family: var(--mono);
       font-size: 0.6875rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
+      text-align: right;
       user-select: none;
     }
+  }
+
+  .pi-counter {
+    display: block;
   }
 
   .pi-current {
@@ -62,14 +67,15 @@ const index = [
     color: var(--ink-faint);
   }
 
-  /* The names flow on in the same vertical column as the counter */
   .pi-index {
-    display: inline;
+    margin-top: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
   }
 
   .pi-link {
     color: var(--ink-faint);
-    margin-inline-start: 1rem;
     transition: color 0.35s var(--ease-out);
   }
 
@@ -79,12 +85,5 @@ const index = [
 
   .pi-link.active {
     color: var(--vermillion);
-  }
-
-  /* Short viewports: keep the counter, tuck the names away */
-  @media (max-height: 43rem) {
-    .pi-index {
-      display: none;
-    }
   }
 </style>

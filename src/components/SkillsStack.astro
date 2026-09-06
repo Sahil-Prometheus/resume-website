@@ -4,6 +4,7 @@ import { skillsStack } from '../content/resume';
 
 <section class="section shell" id="skills" aria-label="Skills and stack">
   <p class="kicker" data-reveal><span class="kicker-num">05</span> &mdash; Skills &amp; Stack</p>
+  <h2 class="skills-heading" data-reveal style="--reveal-delay: 0.06s">Skills and Stack</h2>
 
   <div class="skills-grid" role="list">
     {
@@ -24,9 +25,20 @@ import { skillsStack } from '../content/resume';
 </section>
 
 <style>
-  /* Hairline-divided grid: the gaps let the divider colour show
-     through, so every cell edge is a perfect 1px line. */
+  /* Heading sits in the content column, level with the kicker… */
+  .skills-heading {
+    font-family: var(--serif);
+    font-optical-sizing: auto;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+  }
+
+  /* …while the grid breaks out to the full shell width, like the
+     reference: three generous columns parted by hairlines. */
   .skills-grid {
+    grid-column: 1 / -1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1px;
@@ -37,9 +49,6 @@ import { skillsStack } from '../content/resume';
   .skill-card {
     background: var(--paper);
     padding: clamp(1.5rem, 2.5vw, 2.25rem);
-    display: flex;
-    flex-direction: column;
-    min-height: 13rem;
     transition: background-color 0.45s var(--ease-out);
   }
 
@@ -74,8 +83,7 @@ import { skillsStack } from '../content/resume';
     font-size: var(--text-small);
     line-height: 1.6;
     color: var(--ink-soft);
-    margin-top: auto;
-    padding-top: 1.75rem;
+    margin-top: 1rem;
   }
 
   @media (max-width: 64rem) {
@@ -87,10 +95,6 @@ import { skillsStack } from '../content/resume';
   @media (max-width: 40rem) {
     .skills-grid {
       grid-template-columns: 1fr;
-    }
-
-    .skill-card {
-      min-height: 0;
     }
   }
 </style>
