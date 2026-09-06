@@ -179,39 +179,33 @@ export interface SkillCard {
 export const skillsStack: SkillCard[] = [
   {
     label: 'Languages',
-    title: 'SQL, Python, & More',
-    description:
-      'The daily foundation — production-grade SQL and Python for analysis, pipelines, and prototyping.',
+    title: 'Python, SQL, & More',
+    description: 'Python, SQL, and JavaScript form the backbone of my data and automation work.',
   },
   {
-    label: 'BI & Viz',
-    title: 'Power BI & Tableau',
-    description:
-      'Executive dashboards and self-serve analytics designed for adoption, not decoration.',
-  },
-  {
-    label: 'AI & LLM',
-    title: 'Claude, Copilot, & More',
-    description:
-      'Conversational analytics and LLM workflows embedded into real business processes.',
+    label: 'Data & BI',
+    title: 'Power BI, Tableau, & More',
+    description: 'Power BI, Tableau, and Excel for clear, decision-ready reporting.',
   },
   {
     label: 'Cloud & Data',
     title: 'AWS, Snowflake, & More',
-    description:
-      'Modern data stacks — warehousing, pipelines, and modelling that keep insights reliable.',
+    description: 'AWS, Snowflake, and BigQuery for scalable data pipelines and storage.',
+  },
+  {
+    label: 'AI & LLM',
+    title: 'Claude, Copilot, & More',
+    description: 'Claude, Copilot, and modern LLM tooling for AI-assisted workflows.',
   },
   {
     label: 'Analytics & DS',
     title: 'Regression & Forecasting',
-    description:
-      'Marketing mix models, demand forecasting, and NLP translated into commercial decisions.',
+    description: 'Regression, forecasting, and NLP applied to real business problems.',
   },
   {
     label: 'Web & Automation',
     title: 'n8n & VBA',
-    description:
-      'Automation that removes the grunt work — from spreadsheet macros to orchestrated workflows.',
+    description: 'n8n, VBA, and scripting to remove repetitive manual work.',
   },
 ];
 

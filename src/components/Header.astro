@@ -1,5 +1,6 @@
 ---
 import { person } from '../content/resume';
+import SocialIcons from './SocialIcons.astro';
 
 const nav = [
   { label: 'Profile', href: '#profile' },
@@ -26,6 +27,9 @@ const nav = [
           }
         </ul>
       </nav>
+      <div class="header-social">
+        <SocialIcons />
+      </div>
       <button
         class="theme-toggle"
         data-theme-toggle
@@ -68,6 +72,24 @@ const nav = [
     display: flex;
     align-items: baseline;
     gap: clamp(1.25rem, 3vw, 2.25rem);
+  }
+
+  .header-social {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Slightly smaller marks so they sit quietly beside the nav */
+  .header-social :global(.social-link svg) {
+    width: 15px;
+    height: 15px;
+  }
+
+  /* Phones: the icons live in the Contact section instead */
+  @media (max-width: 40rem) {
+    .header-social {
+      display: none;
+    }
   }
 
   nav ul {

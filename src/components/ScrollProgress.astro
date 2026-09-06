@@ -1,13 +1,35 @@
 ---
-/* A quiet reading companion: a fixed page counter on the right
-   edge, set vertically — "03 / 07" — showing which numbered
-   section is in view. Updates in step with Lenis' scroll. */
+/* A quiet reading companion fixed to the right edge: the page
+   counter ("03 / 07") above a vertical index of section names.
+   The section in view glows terracotta; clicking a name glides
+   there via Lenis. Hidden on narrow or short screens. */
+
+const index = [
+  { id: 'profile', name: 'Profile' },
+  { id: 'experience', name: 'Experience' },
+  { id: 'projects', name: 'Projects' },
+  { id: 'expertise', name: 'Expertise' },
+  { id: 'skills', name: 'Skills' },
+  { id: 'education', name: 'Education' },
+  { id: 'contact', name: 'Contact' },
+];
 ---
 
-<div class="page-indicator" aria-hidden="true">
-  <span class="pi-current" data-pi-current>01</span>
-  <span class="pi-rest">&nbsp;/&nbsp;<span data-pi-total>07</span></span>
-</div>
+<aside class="page-indicator" aria-label="Section index">
+  <span class="pi-counter" aria-hidden="true">
+    <span class="pi-current" data-pi-current>01</span>
+    <span class="pi-rest">&nbsp;/&nbsp;<span data-pi-total>07</span></span>
+  </span>
+  <nav class="pi-index">
+    {
+      index.map((item) => (
+        <a class="pi-link" href={`#${item.id}`} data-pi-link={item.id}>
+          {item.name}
+        </a>
+      ))
+    }
+  </nav>
+</aside>
 
 <style>
   .page-indicator {
@@ -26,6 +48,7 @@
       font-family: var(--mono);
       font-size: 0.6875rem;
       letter-spacing: 0.14em;
+      text-transform: uppercase;
       user-select: none;
     }
   }
@@ -37,5 +60,31 @@
 
   .pi-rest {
     color: var(--ink-faint);
+  }
+
+  /* The names flow on in the same vertical column as the counter */
+  .pi-index {
+    display: inline;
+  }
+
+  .pi-link {
+    color: var(--ink-faint);
+    margin-inline-start: 1rem;
+    transition: color 0.35s var(--ease-out);
+  }
+
+  .pi-link:hover {
+    color: var(--ink);
+  }
+
+  .pi-link.active {
+    color: var(--vermillion);
+  }
+
+  /* Short viewports: keep the counter, tuck the names away */
+  @media (max-height: 43rem) {
+    .pi-index {
+      display: none;
+    }
   }
 </style>
