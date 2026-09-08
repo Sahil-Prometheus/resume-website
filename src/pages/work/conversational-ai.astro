@@ -1,0 +1,83 @@
+---
+import Base from '../../layouts/Base.astro';
+import { person, projects } from '../../content/resume';
+
+const project = projects.find((item) => item.href === '/work/conversational-ai');
+
+if (!project) {
+  throw new Error('Missing conversational AI project content.');
+}
+
+const sections = [
+  'The problem',
+  'Approach',
+  'What we built',
+  'Adoption',
+  'Outcome',
+  'What I would do differently',
+] as const;
+---
+
+<Base title={`${person.name} — ${project.title}`} description={project.description}>
+  <article class="case shell">
+    <p class="case-back">
+      <a class="u-link" href="/#projects">← Back</a>
+    </p>
+
+    <h1 class="case-title">{project.title}</h1>
+
+    {
+      sections.map((heading) => (
+        <section class="case-block">
+          <h2>{heading}</h2>
+          <p class="case-todo">TODO: write this section.</p>
+        </section>
+      ))
+    }
+  </article>
+</Base>
+
+<style>
+  .case {
+    padding-block: clamp(2.5rem, 8svh, 5rem);
+    max-width: calc(var(--measure) + 9rem + 3.5rem);
+  }
+
+  .case-back {
+    font-family: var(--font);
+    font-stretch: var(--wdth-ui);
+    font-size: var(--text-meta);
+    font-weight: 500;
+    margin-bottom: 2.5rem;
+  }
+
+  .case-title {
+    font-family: var(--font);
+    font-stretch: var(--wdth-display);
+    font-size: var(--text-section);
+    font-weight: 650;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  .case-block {
+    max-width: var(--measure);
+    margin-top: 2.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .case-block h2 {
+    font-family: var(--font);
+    font-stretch: var(--wdth-ui);
+    font-size: var(--text-body);
+    font-weight: 650;
+    letter-spacing: -0.01em;
+  }
+
+  .case-todo {
+    margin-top: 0.7rem;
+    font-size: var(--text-body);
+    color: var(--ink-faint);
+  }
+</style>

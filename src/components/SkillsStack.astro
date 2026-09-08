@@ -4,7 +4,7 @@ import { skillsStack } from '../content/resume';
 
 <section class="section shell skills-section" id="skills" aria-label="Skills and stack">
   <p class="kicker skills-kicker" data-reveal>
-    <span class="kicker-num">05</span> &mdash; Skills &amp; Stack
+    <span class="kicker-num">04</span> &mdash; Skills &amp; Stack
   </p>
 
   <div class="skills-intro" data-reveal style="--reveal-delay: 0.06s">
@@ -40,6 +40,7 @@ import { skillsStack } from '../content/resume';
 
       <div class="stack-block">
         <h3 data-reveal>Stack</h3>
+        <p class="stack-caption" data-reveal>{skillsStack.stackCaption}</p>
         <dl class="stack-grid" data-reveal style="--reveal-delay: 0.08s">
           {
             skillsStack.stack.map((group) => (
@@ -176,6 +177,15 @@ import { skillsStack } from '../content/resume';
 
   .stack-block {
     margin-top: clamp(3.5rem, 7vw, 5rem);
+  }
+
+  .stack-caption {
+    max-width: 31rem;
+    margin-top: 0.45rem;
+    color: var(--ink-faint);
+    font-stretch: var(--wdth-ui);
+    font-size: var(--text-tag);
+    line-height: 1.45;
   }
 
   .stack-grid {

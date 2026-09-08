@@ -11,7 +11,12 @@ import { projects } from '../content/resume';
           <span class="index-year">{project.year}</span>
           <div class="index-body">
             <h3 class="index-title">{project.title}</h3>
-            <p class="index-desc">{project.description}</p>
+            <p class:list={['index-desc', { long: Boolean(project.href) }]}>{project.description}</p>
+            {project.href && (
+              <a class="index-link u-link" href={project.href}>
+                Read the case study →
+              </a>
+            )}
           </div>
         </li>
       ))
@@ -56,5 +61,19 @@ import { projects } from '../content/resume';
     color: var(--ink-soft);
     margin-top: 0.35rem;
     max-width: 34rem;
+  }
+
+  .index-desc.long {
+    max-width: 44rem;
+  }
+
+  .index-link {
+    display: inline-block;
+    margin-top: 0.55rem;
+    font-family: var(--font);
+    font-stretch: var(--wdth-ui);
+    font-size: var(--text-meta);
+    font-weight: 500;
+    color: var(--ink);
   }
 </style>

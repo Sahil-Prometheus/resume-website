@@ -6,10 +6,10 @@ import { stats } from '../content/resume';
   {
     stats.map((stat, i) => (
       <div class="stat">
-        <p class="stat-value">
+        <p class:list={['stat-value', { compact: stat.compact }]}>
           <span class="stat-num" data-stat-focus>
             {stat.value}
-            <span class="stat-suffix">{stat.suffix}</span>
+            {stat.suffix && <span class="stat-suffix">{stat.suffix}</span>}
           </span>
         </p>
         <p class="stat-label" data-hero="fade" style={`--d: ${0.9 + i * 0.22}s`}>
@@ -66,6 +66,12 @@ import { stats } from '../content/resume';
     line-height: 1;
     font-variant-numeric: tabular-nums;
     overflow: visible;
+  }
+
+  .stat-value.compact {
+    font-size: clamp(0.7rem, 2.4vw, 1.15rem);
+    letter-spacing: -0.03em;
+    font-variant-numeric: normal;
   }
 
   /* First paint is already misty, so the numbers never flash

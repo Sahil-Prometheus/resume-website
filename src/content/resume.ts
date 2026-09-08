@@ -9,7 +9,7 @@
 
 export const person = {
   name: 'Sahil Gohel',
-  role: 'Principal Consultant — AI & Analytics',
+  role: 'AI & Analytics Consultant — Principal Consultant, Kantar',
   location: 'London, UK',
   email: 'sahilgohel91@gmail.com',
   phone: '+44 7778 157299',
@@ -33,13 +33,20 @@ export const profile = {
   ],
 };
 
-// The four numbers shown on the landing screen. They ease
+// The four figures shown on the landing screen. They ease
 // into focus when the page loads. Suffix appears after the number (%, +).
-export const stats = [
-  { value: 9, suffix: '', label: 'Years of experience' },
-  { value: 100, suffix: '%', label: 'Project renewal rate' },
+export interface Stat {
+  value: number | string;
+  suffix: string;
+  label: string;
+  compact?: boolean;
+}
+
+export const stats: Stat[] = [
+  { value: 300, suffix: '+', label: 'Users on shipped AI solutions' },
+  { value: 'Weeks → mins', suffix: '', label: 'Time to insight', compact: true },
   { value: 60, suffix: '%', label: 'Faster insight delivery' },
-  { value: 25, suffix: '+', label: 'Specialists overseen' },
+  { value: 9, suffix: '', label: 'Years advising Fortune 50' },
 ];
 
 export interface Role {
@@ -47,6 +54,7 @@ export interface Role {
   title: string;
   period: string;
   location: string;
+  note?: string;
   highlights: string[];
   // One number worth remembering from this role.
   // accent: true paints it vermillion — keep it to one role only.
@@ -59,20 +67,21 @@ export const experience: Role[] = [
     title: 'Principal Consultant, Analytics UK',
     period: '2023 — Present',
     location: 'London',
+    note: 'Relocated to Kantar UK via internal transfer, March 2023.',
     highlights: [
       'Spearheaded a conversational AI solution integrating brand tracker, panel, ad spend, and sales data — owning it from sales deck and demo tools through client demos and iterative product improvement.',
-      'Won three first-time client accounts (“new logos”) by converting leads and leading proposals, expanding the company’s portfolio and revenue base.',
-      'Acted as the go-to resource for high-stakes sales conversations, crafting proposals and straw-man solutions for key opportunities.',
       'Led strategic data initiatives and BI automation, cutting insight delivery time by 60% and raising data adoption across global teams.',
       'Provided indirect oversight of 25+ analysts, scientists, designers, researchers, and offshore teams.',
+      'Won three first-time client accounts (“new logos”) by converting leads and leading proposals, expanding the company’s portfolio and revenue base.',
+      'Acted as the go-to resource for high-stakes sales conversations, crafting proposals and straw-man solutions for key opportunities.',
     ],
-    metric: { value: '100%', label: 'project renewal rate', accent: true },
+    metric: { value: '300+', label: 'users on shipped AI solutions', accent: true },
   },
   {
     company: 'Kantar',
     title: 'Director — Data Strategy & Engineering',
     period: '2021 — 2023',
-    location: 'Remote',
+    location: 'India',
     highlights: [
       'Advised multiple Fortune 50 companies on data strategy, pricing, and resourcing, driving strategic decisions across global brands.',
       'Managed diverse analytics portfolios, exceeding revenue targets through innovative, scalable solutions.',
@@ -98,14 +107,16 @@ export interface Project {
   year: string;
   title: string;
   description: string;
+  href?: string;
 }
 
 export const projects: Project[] = [
   {
     year: '2025',
-    title: 'Conversational AI pilot',
+    title: 'Conversational AI solution',
     description:
-      'Rolled out a conversational AI tool built on brand tracker data for a leading client.',
+      'Built and shipped a conversational AI solution over integrated brand tracker, panel, ad spend and sales data. 300+ users across global markets, time-to-insight cut from weeks to minutes, renewed for a further two years.',
+    href: '/work/conversational-ai',
   },
   {
     year: '2024',
@@ -133,38 +144,6 @@ export const projects: Project[] = [
     year: '2019',
     title: 'NLP-driven NPS analysis',
     description: 'Identified NPS drivers for a leading life insurance provider.',
-  },
-];
-
-export interface SkillGroup {
-  label: string;
-  skills: string[];
-}
-
-export const expertise: SkillGroup[] = [
-  {
-    label: 'AI & Analytics',
-    skills: [
-      'AI & machine learning implementation',
-      'Dashboard design',
-      'Insights & storytelling',
-    ],
-  },
-  {
-    label: 'Client Craft',
-    skills: [
-      'Client advisory & stakeholder management',
-      'Proposal development & sales enablement',
-      'Solution embedding',
-    ],
-  },
-  {
-    label: 'Leadership',
-    skills: [
-      'Cross-functional team leadership',
-      'Consensus building',
-      'Conflict resolution',
-    ],
   },
 ];
 
@@ -220,19 +199,18 @@ export const skillsStack = {
       ],
     },
   ] satisfies EngagementPhase[],
+  stackCaption:
+    'Professional tooling I use on client work, and what I build my own projects with.',
   stack: [
     {
-      label: 'Data and AI',
+      label: 'Professional',
       technologies:
-        'Python, SQL, Postgres, Claude API, retrieval and evaluation design, local models (Llama, Gemma, Qwen)',
+        'Copilot Studio, Claude and OpenAI APIs, RAG and retrieval design, Power Automate, Microsoft Graph, SharePoint, Power BI, SQL, Figma',
     },
     {
-      label: 'Build',
-      technologies: 'React, TypeScript, Supabase, Vercel, GitHub CI/CD, Cursor, Figma',
-    },
-    {
-      label: 'Enterprise',
-      technologies: 'Power BI, Tableau, Azure, Microsoft 365',
+      label: 'Personal builds',
+      technologies:
+        'Astro, React, TypeScript, Supabase, Vercel, Cursor and agentic coding tools, local models (Llama, Gemma, Qwen)',
     },
   ] satisfies StackGroup[],
 };
@@ -266,5 +244,5 @@ export const education = {
 
 export const contact = {
   heading: 'Let’s talk',
-  note: 'I’m currently open to senior roles in AI implementation, AI product management, and analytics consulting. The best way to reach me is by email — I reply within a day.',
+  note: 'I’m currently open to AI consulting and AI transformation roles in London. The best way to reach me is by email — I reply within a day.',
 };

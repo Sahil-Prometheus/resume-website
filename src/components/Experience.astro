@@ -14,6 +14,7 @@ import { experience } from '../content/resume';
             <p class="role-period">
               {role.period} &nbsp;&middot;&nbsp; {role.location}
             </p>
+            {role.note && <p class="role-note">{role.note}</p>}
           </header>
 
           <p class:list={['role-metric', { accent: role.metric.accent }]}>
@@ -75,6 +76,14 @@ import { experience } from '../content/resume';
     font-size: var(--text-meta);
     color: var(--ink-faint);
     margin-top: 0.5rem;
+  }
+
+  .role-note {
+    font-family: var(--font);
+    font-stretch: var(--wdth-ui);
+    font-size: var(--text-meta);
+    color: var(--ink-soft);
+    margin-top: 0.35rem;
   }
 
   /* The one number worth remembering */
